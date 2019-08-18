@@ -2,8 +2,10 @@
 zipkin是一个开放源代码分布式的跟踪系统，由Twitter公司开源，它致力于收集服务的定时数据，以解决微服务架构中的延迟问题，包括数据的收集、存储、查找和展现。它的理论模型来自于Google Dapper 论文。
 #
 运行service1、service2、service3、service4之前先启动zipkin-server-2.11.8。
+#
 1)zipkin采用memory存储链路日志
   直接启动zipkin：java -jar zipkin-server-2.11.8-exec.jar
+#
 2)zipkin采用mysql存储链路日志
 先创建相关数据库表：
 CREATE TABLE IF NOT EXISTS zipkin_spans (
@@ -55,7 +57,8 @@ CREATE TABLE IF NOT EXISTS zipkin_dependencies (
   PRIMARY KEY (`day`, `parent`, `child`)
 ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;
 
-然后启动zipkin：java -jar zipkin-server-2.11.8-exec.jar --STORAGE_TYPE=mysql --MYSQL_HOST=127.0.0.1 --MYSQL_TCP_PORT=3306 --MYSQL_DB=zipkin --MYSQL_USER=root --MYSQL_PASS=password  
+然后启动zipkin：java -jar zipkin-server-2.11.8-exec.jar --STORAGE_TYPE=mysql --MYSQL_HOST=127.0.0.1 --MYSQL_TCP_PORT=3306 --MYSQL_DB=zipkin --MYSQL_USER=root --MYSQL_PASS=password 
+# 
 3)zipkin采用rabbitmq存储链路日志
 启动zipkin：java -jar zipkin-server-2.11.8-exec.jar --zipkin.collector.rabbitmq.addresses=localhost:5672 --zipkin.collector.rabbitmq.username=guest --zipkin.collector.rabbitmq.password=guest 
 
