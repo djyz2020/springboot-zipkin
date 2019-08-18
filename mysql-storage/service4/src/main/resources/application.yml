@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: service4
+
+  zipkin:
+    base-url: http://localhost:9411
+    enabled: true
+    # sender:
+    #     type:  WEB  # zipkin链接方式
+
+  sleuth:
+      web:
+        client:
+          enabled: true
+      sampler:
+        probability: 1.0  #zipkin采集率  0.1表示10%采集率
+
+server:
+  port: 8084
+
