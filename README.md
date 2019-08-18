@@ -58,6 +58,10 @@ CREATE TABLE IF NOT EXISTS zipkin_dependencies (
 <br>
 然后启动zipkin：java -jar zipkin-server-2.11.8-exec.jar --STORAGE_TYPE=mysql --MYSQL_HOST=127.0.0.1 --MYSQL_TCP_PORT=3306 --MYSQL_DB=zipkin --MYSQL_USER=root --MYSQL_PASS=password  <br>
 <br>
-3）zipkin采用rabbitmq存储链路日志 <br>
+3）zipkin采用rabbitmq做日志消息中间件，mysql存储链路日志 <br>
 启动zipkin：java -jar zipkin-server-2.11.8-exec.jar --zipkin.collector.rabbitmq.addresses=localhost:5672 --zipkin.collector.rabbitmq.username=guest --zipkin.collector.rabbitmq.password=guest --zipkin.storage.type=mysql --zipkin.storage.mysql.host=127.0.0.1 --zipkin.storage.mysql.port=3306  --zipkin.storage.mysql.db=zipkin --zipkin.storage.mysql.username=root --zipkin.storage.mysql.password=password <br>
+<br>
+
+<h3>比较好的方案：kafka/rabbitmq选用为日志消息中间件，elasticsearch选用为日志存储系统，配合kibana进行日志分析。</h3>
+
 
